@@ -1,12 +1,23 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 h1 {
-  color: #333;
+  color: #ffffff;
+  font-size: 36px;
+  margin-bottom: 30px;
 }
 
 ul {
@@ -15,15 +26,19 @@ ul {
 }
 
 li {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: #2e2e2e;
+  padding: 15px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 a {
-  color: #0066cc;
+  color: #4da6ff;
   text-decoration: none;
+  font-size: 20px;
   flex-grow: 1;
 }
 
@@ -31,59 +46,48 @@ a:hover {
   text-decoration: underline;
 }
 
-.delete-btn {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-left: 10px;
+.button-container {
+  margin-bottom: 30px;
 }
 
-.delete-btn:hover {
-  background-color: #ff1a1a;
+.button-container button {
+  margin-right: 15px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 #reload-btn {
   background-color: #4CAF50;
-  border: none;
   color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
 }
 
 #reload-btn:hover {
   background-color: #45a049;
 }
 
-.button-container {
-  margin-bottom: 20px;
-}
-
-.button-container button {
-  margin-right: 10px;
-}
-
 #export-btn {
   background-color: #008CBA;
-  border: none;
   color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
 }
 
 #export-btn:hover {
   background-color: #007B9A;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a1a;
 }
