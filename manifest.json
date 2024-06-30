@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "待讀清單擴充功能",
+  "name": "Reading List Extension",
   "version": "1.0",
-  "description": "將分頁加入待讀清單,並在新分頁中顯示",
+  "description": "Add tabs to reading list and display them in new tabs",
   "permissions": [
     "tabs",
     "storage"
@@ -11,7 +11,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "加入待讀清單"
+    "default_title": "Add to Reading List"
   },
   "chrome_url_overrides": {
     "newtab": "newtab.html"
