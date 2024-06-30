@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "待讀清單擴充功能",
+  "version": "1.0",
+  "description": "將分頁加入待讀清單,並在新分頁中顯示",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "加入待讀清單"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  }
+}
