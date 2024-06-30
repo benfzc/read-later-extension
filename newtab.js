@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const readingList = document.getElementById('reading-list');
   const reloadBtn = document.getElementById('reload-btn');
   const exportBtn = document.getElementById('export-btn');
+  const toggleMarkdownBtn = document.getElementById('toggle-markdown-btn');
+  const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
+  const markdownContainer = document.getElementById('markdown-container');
+  const markdownSource = document.getElementById('markdown-source');
 
   function updateList() {
     chrome.storage.sync.get(['readingList'], (result) => {
@@ -22,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         li.appendChild(deleteBtn);
         readingList.appendChild(li);
       });
+      updateMarkdown(); // Update Markdown when list is updated
     });
   }
 
@@ -35,30 +40,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function exportToMarkdown() {
-    chrome.storage.sync.get(['readingList'], (result) => {
-      const list = result.readingList || [];
-      let markdown = "# Reading List\n\n";
-      list.forEach((item) => {
-        markdown += `- [${item.title}](${item.url})\n`;
+  function generateMarkdown() {
+    return new Promise((resolve) => {
+      chrome.storage.sync.get(['readingList'], (result) => {
+        const list = result.readingList || [];
+        let markdown = "# Reading List\n\n";
+        list.forEach((item) => {
+          markdown += `- [${item.title}](${item.url})\n`;
+        });
+        resolve(markdown);
       });
-      
-      // Create a Blob with the markdown content
+    });
+  }
+
+  function exportToMarkdown() {
+    generateMarkdown().then((markdown) => {
       const blob = new Blob([markdown], {type: "text/markdown;charset=utf-8"});
-      
-      // Create a link to download the file and trigger the download
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = "reading_list.md";
       link.click();
-      
-      // Clean up
       URL.revokeObjectURL(link.href);
+    });
+  }
+
+  function updateMarkdown() {
+    generateMarkdown().then((markdown) => {
+      markdownSource.textContent = markdown;
+    });
+  }
+
+  function toggleMarkdown() {
+    if (markdownContainer.style.display === 'none') {
+      markdownContainer.style.display = 'block';
+      toggleMarkdownBtn.textContent = 'Hide Markdown';
+      updateMarkdown();
+    } else {
+      markdownContainer.style.display = 'none';
+      toggleMarkdownBtn.textContent = 'Show Markdown';
+    }
+  }
+
+  function copyMarkdown() {
+    navigator.clipboard.writeText(markdownSource.textContent).then(() => {
+      alert('Markdown copied to clipboard!');
     });
   }
 
   reloadBtn.addEventListener('click', updateList);
   exportBtn.addEventListener('click', exportToMarkdown);
+  toggleMarkdownBtn.addEventListener('click', toggleMarkdown);
+  copyMarkdownBtn.addEventListener('click', copyMarkdown);
 
   updateList(); // Initial list population
 });

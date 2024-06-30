@@ -91,3 +91,32 @@ button {
 .delete-btn:hover {
   background-color: #ff1a1a;
 }
+
+#markdown-container {
+  margin-top: 30px;
+  background-color: #2e2e2e;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#markdown-source {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: 14px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#toggle-markdown-btn, #copy-markdown-btn {
+  background-color: #6a5acd;
+  color: white;
+}
+
+#toggle-markdown-btn:hover, #copy-markdown-btn:hover {
+  background-color: #483d8b;
+}
