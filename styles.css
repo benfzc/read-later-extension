@@ -120,3 +120,21 @@ button {
 #toggle-markdown-btn:hover, #copy-markdown-btn:hover {
   background-color: #483d8b;
 }
+
+#export-html-btn {
+  background-color: #ff7f50;
+  color: white;
+}
+
+#export-html-btn:hover {
+  background-color: #ff6347;
+}
+
+#import-btn {
+  background-color: #9932CC;
+  color: white;
+}
+
+#import-btn:hover {
+  background-color: #8B008B;
+}
