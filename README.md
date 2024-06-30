@@ -4,6 +4,8 @@ This is a Google Chrome extension (also compatible with Edge) that allows you to
 
 [中文說明 (Chinese README)](README_zh.md)
 
+![screenshot](../screenshot/images/screenshot.jpg)
+
 ## Features
 - Add to Reading List: Click the extension icon to add the current page to your reading list.
 - View Reading List: Your reading list is displayed every time you open a new tab.

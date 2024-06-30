@@ -4,6 +4,8 @@
 
 [English README](README.md)
 
+![screenshot](../screenshot/images/screenshot.jpg)
+
 ## 功能
 - 加到待讀清單：點擊擴充功能圖標將當前分頁加到待讀清單。
 - 查看待讀清單：每次打開新分頁時，待讀清單會自動顯示。
