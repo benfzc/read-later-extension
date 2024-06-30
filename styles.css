@@ -16,13 +16,30 @@ ul {
 
 li {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 a {
   color: #0066cc;
   text-decoration: none;
+  flex-grow: 1;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a1a;
 }
