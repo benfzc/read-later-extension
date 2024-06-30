@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const readingList = document.getElementById('reading-list');
   const reloadBtn = document.getElementById('reload-btn');
+  const exportBtn = document.getElementById('export-btn');
 
   function updateList() {
     chrome.storage.sync.get(['readingList'], (result) => {
@@ -34,7 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function exportToMarkdown() {
+    chrome.storage.sync.get(['readingList'], (result) => {
+      const list = result.readingList || [];
+      let markdown = "# Reading List\n\n";
+      list.forEach((item) => {
+        markdown += `- [${item.title}](${item.url})\n`;
+      });
+      
+      // Create a Blob with the markdown content
+      const blob = new Blob([markdown], {type: "text/markdown;charset=utf-8"});
+      
+      // Create a link to download the file and trigger the download
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "reading_list.md";
+      link.click();
+      
+      // Clean up
+      URL.revokeObjectURL(link.href);
+    });
+  }
+
   reloadBtn.addEventListener('click', updateList);
+  exportBtn.addEventListener('click', exportToMarkdown);
 
   updateList(); // Initial list population
 });
