@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const readingList = document.getElementById('reading-list');
+  const reloadBtn = document.getElementById('reload-btn');
 
   function updateList() {
     chrome.storage.sync.get(['readingList'], (result) => {
@@ -32,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  reloadBtn.addEventListener('click', updateList);
 
   updateList(); // Initial list population
 });
