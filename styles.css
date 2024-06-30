@@ -48,19 +48,21 @@ a:hover {
 
 .button-container {
   margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .button-container button {
-  margin-right: 15px;
-}
-
-button {
-  font-size: 18px;
-  padding: 10px 20px;
+  flex: 1 1 auto;
+  min-width: 120px;
+  font-size: 16px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 #reload-btn {
@@ -72,13 +74,40 @@ button {
   background-color: #45a049;
 }
 
-#export-btn {
+#import-btn {
+  background-color: #9932CC;
+  color: white;
+}
+
+#import-btn:hover {
+  background-color: #8B008B;
+}
+
+#export-md-btn {
   background-color: #008CBA;
   color: white;
 }
 
-#export-btn:hover {
+#export-md-btn:hover {
   background-color: #007B9A;
+}
+
+#export-html-btn {
+  background-color: #ff7f50;
+  color: white;
+}
+
+#export-html-btn:hover {
+  background-color: #ff6347;
+}
+
+#toggle-markdown-btn {
+  background-color: #6a5acd;
+  color: white;
+}
+
+#toggle-markdown-btn:hover {
+  background-color: #483d8b;
 }
 
 .delete-btn {
@@ -112,29 +141,11 @@ button {
   overflow-y: auto;
 }
 
-#toggle-markdown-btn, #copy-markdown-btn {
+#copy-markdown-btn {
   background-color: #6a5acd;
   color: white;
 }
 
-#toggle-markdown-btn:hover, #copy-markdown-btn:hover {
+#copy-markdown-btn:hover {
   background-color: #483d8b;
-}
-
-#export-html-btn {
-  background-color: #ff7f50;
-  color: white;
-}
-
-#export-html-btn:hover {
-  background-color: #ff6347;
-}
-
-#import-btn {
-  background-color: #9932CC;
-  color: white;
-}
-
-#import-btn:hover {
-  background-color: #8B008B;
 }

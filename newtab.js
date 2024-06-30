@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const readingList = document.getElementById('reading-list');
   const reloadBtn = document.getElementById('reload-btn');
+  const importBtn = document.getElementById('import-btn');
   const exportMdBtn = document.getElementById('export-md-btn');
   const exportHtmlBtn = document.getElementById('export-html-btn');
   const toggleMarkdownBtn = document.getElementById('toggle-markdown-btn');
   const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
   const markdownContainer = document.getElementById('markdown-container');
   const markdownSource = document.getElementById('markdown-source');
-  const importBtn = document.getElementById('import-btn');
   const fileInput = document.getElementById('file-input');
 
   function updateList() {
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .filter(Boolean);
-
+    
     mergeNewItems(newItems);
   }
 
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: link.textContent,
       url: link.href
     }));
-
+    
     mergeNewItems(newItems);
   }
 
@@ -185,17 +185,19 @@ document.addEventListener('DOMContentLoaded', () => {
     url = url.replace(/\/$/, '');
     return url.toLowerCase();
   }
+
   function mergeNewItems(newItems) {
     chrome.storage.sync.get(['readingList'], (result) => {
       let currentList = result.readingList || [];
       const updatedList = [...currentList];
-  
+
       newItems.forEach(newItem => {
         const normalizedNewUrl = normalizeUrl(newItem.url);
         if (!currentList.some(item => normalizeUrl(item.url) === normalizedNewUrl)) {
           updatedList.push(newItem);
         }
       });
+
       chrome.storage.sync.set({ readingList: updatedList }, () => {
         console.log('List updated with imported items');
         updateList();
@@ -204,12 +206,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   reloadBtn.addEventListener('click', updateList);
+  importBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', handleFileImport);
   exportMdBtn.addEventListener('click', exportToMarkdown);
   exportHtmlBtn.addEventListener('click', exportToHtml);
   toggleMarkdownBtn.addEventListener('click', toggleMarkdown);
   copyMarkdownBtn.addEventListener('click', copyMarkdown);
-  importBtn.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', handleFileImport);
 
   updateList(); // Initial list population
 });
